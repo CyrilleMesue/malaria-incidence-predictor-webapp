@@ -8,8 +8,14 @@ from utils import load_object
 model = load_object("artifacts/Random Forest_model.pkl")
 preprocessor = load_object("artifacts/preprocessor.pkl")
 
+
+if "df" not in st.session_state:
+    df = pd.read_csv("data/viz-data.csv")
+    countries = df.country.unique()
+
+else:
+    countries = st.session_state["df"].country.unique()
 # request inputs
-countries = st.session_state["df"].country.unique()
 col1, col2 = st.columns(2)
 country = col1.selectbox("Select Country", countries)
 year = col1.number_input("Insert a Year", value=None, placeholder="Type a number. e.g 2024")
