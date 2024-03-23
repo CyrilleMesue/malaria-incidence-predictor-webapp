@@ -29,7 +29,6 @@ def plot_maps(year, run_annimation = False):
         fig = px.choropleth(df, locations="code",color="incidence", hover_name="country", 
                             color_continuous_scale=px.colors.sequential.Plasma,animation_frame="year",animation_group="code")
         fig.update_layout(
- automargin=True, yref='paper'),title_x=0.3,
             autosize=True,width=1100,height=600,margin=dict(l=10,r=50,b=1,t=1))
         st.plotly_chart(fig, use_container_width = True)
 
