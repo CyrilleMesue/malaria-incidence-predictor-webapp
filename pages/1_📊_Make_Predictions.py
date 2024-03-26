@@ -5,9 +5,9 @@ import numpy as np
 from utils import load_object
 
 # load models
-model = load_object("artifacts/CatBoostingRegressor_model.pkl")
+model = load_object("artifacts/model.pkl")
 preprocessor = load_object("artifacts/preprocessor.pkl")
-
+st.write(model)
 # sidebar
 st.sidebar.info("""
 **Note:** The latitude and longitude fields are populated by default using coordinates of the chosen country. However, the longitudes and latitudes can be changed manually.
