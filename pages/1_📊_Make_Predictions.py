@@ -5,22 +5,27 @@ import numpy as np
 from utils import load_object
 
 # load models
-model = load_object("artifacts/Random Forest_model.pkl")
+model = load_object("artifacts/CatBoostingRegressor_model.pkl")
 preprocessor = load_object("artifacts/preprocessor.pkl")
 
+# sidebar
+st.sidebar.info("""
+**Note:** The latitude and longitude fields are populated by default using coordinates of the chosen country. However, the longitudes and latitudes can be changed manually.
+""")
 
 if "df" not in st.session_state:
     df = pd.read_csv("data/viz-data.csv")
-    countries = df.country.unique()
+    st.session_state["df"] = df
+countries = st.session_state["df"].country.unique()
 
-else:
-    countries = st.session_state["df"].country.unique()
 # request inputs
 col1, col2 = st.columns(2)
 country = col1.selectbox("Select Country", countries)
+default_longitude = st.session_state["df"].longitude[list(st.session_state["df"].country).index(country)]
+default_latitude = st.session_state["df"].latitude[list(st.session_state["df"].country).index(country)]
 year = col1.number_input("Insert a Year", value=None, placeholder="Type a number. e.g 2024")
-longitude = col1.number_input("Insert a Longitude", value=None, placeholder="Type a number. e.g 15.827659")
-latitude = col1.number_input("Insert a Latitude", value=None, placeholder="Type a number. e.g -0.228021")
+longitude = col1.number_input("Insert a Longitude", value=default_longitude, placeholder="Type a number. e.g 15.827659")
+latitude = col1.number_input("Insert a Latitude", value=default_latitude, placeholder="Type a number. e.g -0.228021")
 precipitation = col2.number_input("Insert a value for Precipitation", value=None, placeholder="Type a number. e.g 1516.01")
 AvMeanSurAirTemp = col2.number_input("Insert a value for Average Mean Surface Air Temperature", value=None, placeholder="Type a number. e.g 24.0")
 AvMaxSurAirTemp = col2.number_input("Insert a value for Average Maximum Surface Air Temperature", value=None, placeholder="Type a number. e.g 24.0")

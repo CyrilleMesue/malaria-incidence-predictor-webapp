@@ -10,7 +10,7 @@ st.set_page_config(layout="wide")
 # page title
 st.title("Welcome to Malaria Incidence Prediction!!!")
 st.write("""
-In this project, we have implemented various regression models and obtained a Random Forest Model with a correlation score of 96.7% on the test data. The dataset encompasses information from 98 countries, which are highlighted in the map below. Comparing the two maps, it's evident that the model's predictions closely match the actual data, as the maps exhibit remarkable similarity across all years.    
+In this project, we have implemented various regression models and obtained a CatBoost Model with a correlation score of 96.7% on the test data. The dataset encompasses information from 98 countries, which are highlighted in the map below. Comparing the two maps, it's evident that the model's predictions closely match the actual data, as the maps exhibit remarkable similarity across all years.    
 
 You can choose to visualize a specific year of interest or opt for an animation feature to display the distribution of incidence, one year at a time.   
 
